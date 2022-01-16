@@ -5,27 +5,38 @@ import AddCard from "./AddCard";
 import EditProfile from "./EditProfile";
 import PopupWithConfirm from "./PopupWithConfirm";
 import EditAvatar from "./EditAvatar";
+import React from "react";
 
 function App() {
-	const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
-	const [isAddCardOpen, setIsAddCardOpen] = useState(false);
-	const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
-	const [isPopupWithConfirmOpen, setIsPopupWithConfirmOpen] = useState(false);
+	const [isEditProfilePopupOpen, setisEditProfilePopupOpen] =
+		React.useState(false);
+	const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false);
+	const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] =
+		React.useState(false);
+	const [isPopupWithConfirmOpen, setIsPopupWithConfirmOpen] =
+		React.useState(false);
 
 	const handleEditProfileClick = () => {
-		setIsEditProfileOpen(true);
+		setisEditProfilePopupOpen(true);
 	};
 
 	const handleAddPlaceClick = () => {
-		setIsAddCardOpen(true);
+		setisAddPlacePopupOpen(true);
 	};
 
 	const handleEditAvatarClick = () => {
-		setIsEditAvatarOpen(true);
+		setisEditAvatarPopupOpen(true);
 	};
 
 	const handleDeleteOpen = () => {
 		setIsPopupWithConfirmOpen(true);
+	};
+
+	const closeAllPopups = () => {
+		setisEditProfilePopupOpen(false);
+		setisAddPlacePopupOpen(false);
+		setisEditAvatarPopupOpen(false);
+		setIsPopupWithConfirmOpen(false);
 	};
 
 	return (
@@ -34,13 +45,16 @@ function App() {
 			<Main
 				onEditAvatarClick={handleEditAvatarClick}
 				onEditProfileClick={handleEditProfileClick}
-				onEditAddPlaceClick={handleAddPlaceClick}
-				onDeleteOpen={handleDeleteOpen}
+				onAddPlaceClick={handleAddPlaceClick}
+				onCardClick={handleDeleteOpen}
 			/>
-			<AddCard isOpen={isAddCardOpen} />
-			<EditProfile isOpen={isEditProfileOpen} />
-			<EditAvatar isOpen={isEditAvatarOpen} />
-			<PopupWithConfirm isOpen={isPopupWithConfirmOpen} />
+			<AddCard isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+			<EditProfile isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+			<EditAvatar isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+			<PopupWithConfirm
+				isOpen={isPopupWithConfirmOpen}
+				onClose={closeAllPopups}
+			/>
 
 			<Footer />
 		</div>

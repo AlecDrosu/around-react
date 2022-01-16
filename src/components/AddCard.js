@@ -1,8 +1,14 @@
 import PopupWithForm from "./PopupWithForm.js";
 
-export default function AddCard() {
+export default function AddCard(props) {
 	return (
-		<PopupWithForm name='add' title='New Place' submit='Create' isOpen={isOpen}>
+		<PopupWithForm
+			name='add'
+			title='New Place'
+			submit='Create'
+			isOpen={props.isOpen}
+			onClose={props.onClose}
+		>
 			<label className='form__label'>
 				<input
 					type='text'

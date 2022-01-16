@@ -1,12 +1,13 @@
 import PopupWithForm from "./PopupWithForm.js";
 
-export default function EditProfile() {
+export default function EditProfile(props) {
 	return (
 		<PopupWithForm
 			name='edit'
 			title='Edit Profile'
 			submit='Save'
-			isOpen={isOpen}
+			isOpen={props.isOpen}
+			onClose={props.onClose}
 		>
 			<label className='form__label'>
 				<input

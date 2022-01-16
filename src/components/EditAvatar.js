@@ -1,12 +1,13 @@
 import PopupWithForm from "./PopupWithForm.js";
 
-export default function EditAvatar() {
+export default function EditAvatar(props) {
 	return (
 		<PopupWithForm
 			name='edit'
 			title='Change profile picture'
 			submit='Save'
-			isOpen={isOpen}
+			isOpen={props.isOpen}
+			onClose={props.onClose}
 		>
 			<label className='form__label'>
 				<input

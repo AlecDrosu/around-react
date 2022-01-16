@@ -1,20 +1,22 @@
-function PopopWithForm() {
-	// setup the props
-	this.props = {
-		title: "",
-		name: "",
-		submit: "",
-		// the names are edit, edit-pic, add, confirm
-	};
+export default function PopopWithForm(props) {
 	return (
-		<section className={`modal modal_type_${props.name} ${isOpen && 'modal_is-open'}`} id='first__modal'>
+		<section
+			className={`modal modal_type_${props.name} ${
+				props.isOpen ? "modal_is-open" : ""
+			}`}
+			id='first__modal'
+		>
 			<div className='modal__body'>
-				<button type='button' className='modal__close-btn'></button>
+				<button
+					type='button'
+					className='modal__close-btn'
+					onClick={props.onClose}
+				></button>
 				<h2 className='modal__title'>{props.title}</h2>
 				<form method='GET' className='form' name='edit' noValidate>
-                    {children}
+					{props.children}
 					<button type='submit' className='form__submit'>
-						{props.button}
+						{props.submit}
 					</button>
 				</form>
 			</div>
