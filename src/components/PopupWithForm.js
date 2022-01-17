@@ -1,4 +1,4 @@
-export default function PopopWithForm(props) {
+export default function PopupWithForm(props) {
 	return (
 		<section
 			className={`modal modal_type_${props.name} ${
