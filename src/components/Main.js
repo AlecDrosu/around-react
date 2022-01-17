@@ -1,20 +1,40 @@
-import Man from "../images/man.jpg";
-import Braies from "../images/braies.png";
+// import Man from "../images/man.jpg";
+// import Braies from "../images/braies.png";
 import api from "../utils/api";
 import React from "react";
+import Card from "./Card.js";
 
 export default function Main(props) {
 	// add the userName, userDescription, and userAvatar state variables
 	const [userName, setUserName] = React.useState("");
 	const [userDescription, setUserDescription] = React.useState("");
 	const [userAvatar, setUserAvatar] = React.useState("");
+	const [cards, setCards] = React.useState([]);
+
+	React.useEffect(() => {
+		api.getUserInfo().then((data) => {
+			setUserName(data.name);
+			setUserDescription(data.about);
+			setUserAvatar(data.avatar);
+		});
+	}, []);
+
+	React.useEffect(() => {
+		api.getCards().then((data) => {
+			setCards(data);
+		});
+	}, []);
 
 	return (
 		<main className='main'>
 			<section className='profile'>
 				<div className='profile__holder'>
 					<div className='profile__image-box'>
-						<img src={Man} alt='Man in Hat' className='profile__avatar' />
+						<img
+							src={userAvatar}
+							alt='Man in Hat'
+							className='profile__avatar'
+						/>
 						<button
 							className='profile__avatar-edit'
 							onClick={props.onEditAvatarClick}
@@ -22,14 +42,14 @@ export default function Main(props) {
 					</div>
 					<div className='info'>
 						<div className='title'>
-							<h1 className='title__name'>Jacques Cousteau</h1>
+							<h1 className='title__name'>{userName}</h1>
 							<button
 								type='button'
 								className='title__button'
 								onClick={props.onEditProfileClick}
 							></button>
 						</div>
-						<p className='info__job'>Explorer</p>
+						<p className='info__job'>{userDescription}</p>
 					</div>
 				</div>
 
@@ -40,38 +60,22 @@ export default function Main(props) {
 					onClick={props.onAddPlaceClick}
 				></button>
 			</section>
-			<section className='elements'></section>
 
-			<div className='modal modal_type_preview'>
-				<div className='modal__body modal__body_type_preview'>
-					<button
-						type='button'
-						className='modal__close-btn'
-						onClick={props.onClose}
-					></button>
-					<img className='modal__img' src={Braies} alt='empty' />
-					<h2 className='modal__caption'></h2>
-				</div>
-				<div className='modal__overlay'></div>
-			</div>
-
-			<template id='elementTemplate'>
-				<div className='element'>
-					<img src={Braies} alt='' className='element__img' />
-					<button
-						type='button'
-						className='element__trash'
-						onClick={props.onCardClick}
-					></button>
-					<div className='text'>
-						<h2 className='text__label'></h2>
-						<div className='text__like'>
-							<button type='button' className='text__heart'></button>
-							<span className='text__like-count'>0</span>
-						</div>
-					</div>
-				</div>
-			</template>
+			<section className='elements'>
+				{cards.map((card) => (
+					<Card
+						key={card._id}
+						id={card._id}
+						name={card.name}
+						link={card.link}
+						likes={card.likes}
+						onCardClick={props.onCardClick}
+                        card={card} // Figure out why this is needed
+						// onCardLike={props.onCardLike}
+						// onCardDelete={props.onCardDelete}
+					/>
+				))}
+			</section>
 		</main>
 	);
 }
