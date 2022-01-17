@@ -6,7 +6,7 @@ export default function Card(props) {
 
 	return (
 		<div className='element'>
-			<img src={props.link} alt='' className='element__img' onClick={handleClick} />
+			<img src={props.link} alt={props.name} className='element__img' onClick={handleClick} />
 			<button
 				type='button'
 				className='element__trash'

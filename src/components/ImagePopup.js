@@ -11,7 +11,7 @@ export default function ImagePopup(props) {
 					className='modal__close-btn'
 					onClick={props.onClose}
 				></button>
-				<img className='modal__img' src={props.card.link} alt='empty' />
+				<img className='modal__img' src={props.card.link} alt={props.card.name} />
 				<h2 className='modal__caption'>{props.card.name}</h2>
 			</div>
 			<div className='modal__overlay'></div>

@@ -9,10 +9,10 @@ import React from "react";
 import ImagePopup from "./ImagePopup";
 
 function App() {
-	const [isEditProfilePopupOpen, setisEditProfilePopupOpen] =
+	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
 		React.useState(false);
-	const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = React.useState(false);
-	const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] =
+	const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+	const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
 		React.useState(false);
 	const [isPopupWithConfirmOpen, setIsPopupWithConfirmOpen] =
 		React.useState(false);
@@ -25,15 +25,15 @@ function App() {
 	};
 
 	const handleEditProfileClick = () => {
-		setisEditProfilePopupOpen(true);
+		setIsEditProfilePopupOpen(true);
 	};
 
 	const handleAddPlaceClick = () => {
-		setisAddPlacePopupOpen(true);
+		setIsAddPlacePopupOpen(true);
 	};
 
 	const handleEditAvatarClick = () => {
-		setisEditAvatarPopupOpen(true);
+		setIsEditAvatarPopupOpen(true);
 	};
 
 	const handleDeleteOpen = () => {
@@ -41,9 +41,9 @@ function App() {
 	};
 
 	const closeAllPopups = () => {
-		setisEditProfilePopupOpen(false);
-		setisAddPlacePopupOpen(false);
-		setisEditAvatarPopupOpen(false);
+		setIsEditProfilePopupOpen(false);
+		setIsAddPlacePopupOpen(false);
+		setIsEditAvatarPopupOpen(false);
 		setIsPopupWithConfirmOpen(false);
 		setIsImagePopupOpen(false);
 	};

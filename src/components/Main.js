@@ -3,24 +3,29 @@ import React from "react";
 import Card from "./Card.js";
 
 export default function Main(props) {
-	// add the userName, userDescription, and userAvatar state variables
-	const [userName, setUserName] = React.useState("");
-	const [userDescription, setUserDescription] = React.useState("");
-	const [userAvatar, setUserAvatar] = React.useState("");
+	const [user, setUser] = React.useState("");
 	const [cards, setCards] = React.useState([]);
 
 	React.useEffect(() => {
-		api.getUserInfo().then((data) => {
-			setUserName(data.name);
-			setUserDescription(data.about);
-			setUserAvatar(data.avatar);
-		});
+		api
+			.getUserInfo()
+			.then((data) => {
+				setUser(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
 	React.useEffect(() => {
-		api.getCards().then((data) => {
-			setCards(data);
-		});
+		api
+			.getCards()
+			.then((data) => {
+				setCards(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}, []);
 
 	return (
@@ -29,7 +34,7 @@ export default function Main(props) {
 				<div className='profile__holder'>
 					<div className='profile__image-box'>
 						<img
-							src={userAvatar}
+							src={user.avatar}
 							alt='Man in Hat'
 							className='profile__avatar'
 						/>
@@ -40,14 +45,14 @@ export default function Main(props) {
 					</div>
 					<div className='info'>
 						<div className='title'>
-							<h1 className='title__name'>{userName}</h1>
+							<h1 className='title__name'>{user.name}</h1>
 							<button
 								type='button'
 								className='title__button'
 								onClick={props.onEditProfileClick}
 							></button>
 						</div>
-						<p className='info__job'>{userDescription}</p>
+						<p className='info__job'>{user.about}</p>
 					</div>
 				</div>
 
