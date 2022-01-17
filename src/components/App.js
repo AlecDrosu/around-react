@@ -36,9 +36,9 @@ function App() {
 		setisEditAvatarPopupOpen(true);
 	};
 
-	// const handleDeleteOpen = () => {
-	// 	setIsPopupWithConfirmOpen(true);
-	// };
+	const handleDeleteOpen = () => {
+		setIsPopupWithConfirmOpen(true);
+	};
 
 	const closeAllPopups = () => {
 		setisEditProfilePopupOpen(false);
@@ -56,6 +56,7 @@ function App() {
 				onEditProfileClick={handleEditProfileClick}
 				onAddPlaceClick={handleAddPlaceClick}
 				onCardClick={handleCardClick}
+				onDeleteOpen={handleDeleteOpen}
 			/>
 			<AddCard isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
 			<EditProfile isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />

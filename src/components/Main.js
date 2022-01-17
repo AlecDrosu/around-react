@@ -1,5 +1,3 @@
-// import Man from "../images/man.jpg";
-// import Braies from "../images/braies.png";
 import api from "../utils/api";
 import React from "react";
 import Card from "./Card.js";
@@ -70,7 +68,8 @@ export default function Main(props) {
 						link={card.link}
 						likes={card.likes}
 						onCardClick={props.onCardClick}
-                        card={card} // Figure out why this is needed
+						card={card}
+						onTrashClick={props.onDeleteOpen}
 						// onCardLike={props.onCardLike}
 						// onCardDelete={props.onCardDelete}
 					/>

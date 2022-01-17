@@ -1,6 +1,6 @@
 export default function Card(props) {
 
-    function handleClick () {
+    function handleClick() {
         props.onCardClick(props.card);
     }
 
@@ -10,7 +10,7 @@ export default function Card(props) {
 			<button
 				type='button'
 				className='element__trash'
-				onClick={props.onCardClick}
+				onClick={props.onTrashClick}
 			></button>
 			<div className='text'>
 				<h2 className='text__label'>{props.name}</h2>

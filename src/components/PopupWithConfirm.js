@@ -7,6 +7,7 @@ export default function PopupWithConfirm(props) {
 			title='Are you sure?'
 			submit='Delete'
 			isOpen={props.isOpen}
+            onClose={props.onClose}
 		></PopupWithForm>
 	);
 }
