@@ -13,7 +13,7 @@ export default function PopupWithForm(props) {
 					onClick={props.onClose}
 				></button>
 				<h2 className='modal__title'>{props.title}</h2>
-				<form method='GET' className='form' name='edit' noValidate>
+				<form method='GET' className='form' name='edit' noValidate onSubmit={props.onSubmit}>
 					{props.children}
 					<button type='submit' className='form__submit'>
 						{props.submit}

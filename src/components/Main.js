@@ -1,32 +1,10 @@
-import api from "../utils/api";
 import React from "react";
 import Card from "./Card.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function Main(props) {
-	const [user, setUser] = React.useState("");
-	const [cards, setCards] = React.useState([]);
 
-	React.useEffect(() => {
-		api
-			.getUserInfo()
-			.then((data) => {
-				setUser(data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
-
-	React.useEffect(() => {
-		api
-			.getCards()
-			.then((data) => {
-				setCards(data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, []);
+	const currentUser = React.useContext(CurrentUserContext);
 
 	return (
 		<main className='main'>
@@ -34,7 +12,7 @@ export default function Main(props) {
 				<div className='profile__holder'>
 					<div className='profile__image-box'>
 						<img
-							src={user.avatar}
+							src={currentUser.avatar}
 							alt='Man in Hat'
 							className='profile__avatar'
 						/>
@@ -45,14 +23,14 @@ export default function Main(props) {
 					</div>
 					<div className='info'>
 						<div className='title'>
-							<h1 className='title__name'>{user.name}</h1>
+							<h1 className='title__name'>{currentUser.name}</h1>
 							<button
 								type='button'
 								className='title__button'
 								onClick={props.onEditProfileClick}
 							></button>
 						</div>
-						<p className='info__job'>{user.about}</p>
+						<p className='info__job'>{currentUser.about}</p>
 					</div>
 				</div>
 
@@ -65,7 +43,7 @@ export default function Main(props) {
 			</section>
 
 			<section className='elements'>
-				{cards.map((card) => (
+				{props.cards.map((card) => (
 					<Card
 						key={card._id}
 						id={card._id}
@@ -74,9 +52,9 @@ export default function Main(props) {
 						likes={card.likes}
 						onCardClick={props.onCardClick}
 						card={card}
-						onTrashClick={props.onDeleteOpen}
-						// onCardLike={props.onCardLike}
-						// onCardDelete={props.onCardDelete}
+						// onTrashClick={props.onDeleteOpen}
+						onCardLike={props.onCardLike}
+						onCardDelete={props.onCardDelete}
 					/>
 				))}
 			</section>

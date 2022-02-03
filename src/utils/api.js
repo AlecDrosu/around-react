@@ -31,7 +31,7 @@ class Api {
 		}).then(this._checkResponse);
 	}
 
-	deleteCard({ cardId }) {
+	deleteCard(cardId) {
 		return fetch(`${this._cardUrl}/${cardId}`, {
 			method: "DELETE",
 			headers: this._headers,
@@ -50,6 +50,14 @@ class Api {
 			method: "DELETE",
 			headers: this._headers,
 		}).then(this._checkResponse);
+	}
+
+	changeLikeCardStatus(cardId, isLiked) {
+		if (isLiked) {
+			return this.likeCard({ cardId });
+		} else {
+			return this.dislikeCard({ cardId });
+		}
 	}
 
 	// Editing the profile. Once edited, profile data must be saved on the server. To do this, send a request using the PATCH method:
