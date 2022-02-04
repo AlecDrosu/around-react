@@ -64,10 +64,12 @@ function App() {
 			.then(() => {
 				setCards((state) => state.filter((c) => c._id !== selectedCard._id));
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err);
 			});
-		closeAllPopups();
 	}
 
 	const handleCardClick = (card) => {
@@ -98,10 +100,12 @@ function App() {
 			.then((data) => {
 				setCurrentUser(data);
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err);
 			});
-		closeAllPopups();
 	};
 
 	const handleUpdateAvatar = (avatar) => {
@@ -110,10 +114,13 @@ function App() {
 			.then((data) => {
 				setCurrentUser(data);
 			})
+			.then(() => {
+				closeAllPopups();
+			})
+
 			.catch((err) => {
 				console.log(err);
 			});
-		closeAllPopups();
 	};
 
 	const handleAddPlacePopup = (cardData) => {
@@ -122,10 +129,12 @@ function App() {
 			.then((data) => {
 				setCards([data, ...cards]);
 			})
+			.then(() => {
+				closeAllPopups();
+			})
 			.catch((err) => {
 				console.log(err);
 			});
-		closeAllPopups();
 	};
 
 	const closeAllPopups = () => {
@@ -135,6 +144,18 @@ function App() {
 		setIsPopupWithConfirmOpen(false);
 		setIsImagePopupOpen(false);
 	};
+
+	React.useEffect(() => {
+		const closeByEsc = (e) => {
+			if (e.key === "Escape") {
+				closeAllPopups();
+			}
+		};
+		document.addEventListener("keydown", closeByEsc);
+		return () => {
+			document.removeEventListener("keydown", closeByEsc);
+		};
+	}, []);
 
 	return (
 		<div className='page'>

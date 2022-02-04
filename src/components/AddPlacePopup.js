@@ -5,6 +5,11 @@ export default function AddPlacePopup(props) {
 	const [name, setName] = React.useState("");
 	const [link, setLink] = React.useState("");
 
+	React.useEffect(() => {
+		setName("");
+		setLink("");
+	}, [props.isOpen]);
+
 	function handleAddPlacePopup(evt) {
 		evt.preventDefault();
 		props.onAddPlacePopup({ name, link });
@@ -38,6 +43,7 @@ export default function AddPlacePopup(props) {
 					minLength='1'
 					maxLength='30'
 					onChange={handleChageName}
+					value={name}
 				/>
 				<span className='form__error' id='title-error'></span>
 			</label>
@@ -50,6 +56,7 @@ export default function AddPlacePopup(props) {
 					placeholder='Image Link'
 					required
 					onChange={handleChageLink}
+					value={link}
 				/>
 				<span className='form__error' id='link-error'></span>
 			</label>

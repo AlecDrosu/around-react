@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function PopupWithForm(props) {
-
 	return (
 		<section
 			className={`modal modal_type_${props.name} ${
@@ -16,20 +15,14 @@ export default function PopupWithForm(props) {
 					onClick={props.onClose}
 				></button>
 				<h2 className='modal__title'>{props.title}</h2>
-				<form
-					method='GET'
-					className='form'
-					name='edit'
-					noValidate
-					onSubmit={props.onSubmit}
-				>
+				<form className='form' onSubmit={props.onSubmit}>
 					{props.children}
 					<button type='submit' className='form__submit'>
 						{props.submit}
 					</button>
 				</form>
 			</div>
-			<div className='modal__overlay'></div>
+			<div className='modal__overlay' onClick={props.onClose}></div>
 		</section>
 	);
 }
