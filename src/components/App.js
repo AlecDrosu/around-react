@@ -116,6 +116,18 @@ function App() {
 		closeAllPopups();
 	};
 
+	const handleAddCard = (cardData) => {
+		api
+			.createCard(cardData)
+			.then((data) => {
+				setCards([data, ...cards]);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		closeAllPopups();
+	};
+
 	const closeAllPopups = () => {
 		setIsEditProfilePopupOpen(false);
 		setIsAddPlacePopupOpen(false);
@@ -133,12 +145,15 @@ function App() {
 					onEditProfileClick={handleEditProfileClick}
 					onAddPlaceClick={handleAddPlaceClick}
 					onCardClick={handleCardClick}
-					// onDeleteOpen={handleDeleteOpen}
 					onCardDelete={handleDeleteOpen}
 					onCardLike={handleCardLike}
 					cards={cards}
 				/>
-				<AddCard isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+				<AddCard 
+					isOpen={isAddPlacePopupOpen} 
+					onClose={closeAllPopups} 
+					onAddCard={handleAddCard}
+				/>
 				<EditProfile
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}

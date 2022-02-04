@@ -1,6 +1,23 @@
 import PopupWithForm from "./PopupWithForm.js";
+import React from "react";
 
 export default function AddCard(props) {
+	const [name, setName] = React.useState("");
+	const [link, setLink] = React.useState("");
+
+	function handleAddCard(evt) {
+		evt.preventDefault();
+		props.onAddCard({ name, link });
+	}
+
+	function handleChageName(evt) {
+		setName(evt.target.value);
+	}
+
+	function handleChageLink(evt) {
+		setLink(evt.target.value);
+	}
+
 	return (
 		<PopupWithForm
 			name='add'
@@ -8,6 +25,7 @@ export default function AddCard(props) {
 			submit='Create'
 			isOpen={props.isOpen}
 			onClose={props.onClose}
+			onSubmit={handleAddCard}
 		>
 			<label className='form__label'>
 				<input
@@ -19,6 +37,7 @@ export default function AddCard(props) {
 					required
 					minLength='1'
 					maxLength='30'
+					onChange={handleChageName}
 				/>
 				<span className='form__error' id='title-error'></span>
 			</label>
@@ -30,6 +49,7 @@ export default function AddCard(props) {
 					className='form__input form__input_type_link'
 					placeholder='Image Link'
 					required
+					onChange={handleChageLink}
 				/>
 				<span className='form__error' id='link-error'></span>
 			</label>
