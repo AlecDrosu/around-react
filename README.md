@@ -17,6 +17,6 @@ Still some stuff to work on.
 
 Besides that though, everything should work fine, and it was way easier to do than just using vanilla JS.
 
-##After First Review##
+### After First Review
 
 I made all the changes. The one thing I was confused about was how to prevent the avatar link from showing up when the popup is open. It seems to only be a problem here since I am using ref.
