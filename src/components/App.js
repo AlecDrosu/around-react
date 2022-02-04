@@ -1,10 +1,10 @@
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
-import AddCard from "./AddCard";
-import EditProfile from "./EditProfile";
+import AddPlacePopup from "./AddPlacePopup";
+import EditProfilePopup from "./EditProfilePopup";
 import PopupWithConfirm from "./PopupWithConfirm";
-import EditAvatar from "./EditAvatar";
+import EditAvatarPopup from "./EditAvatarPopup";
 import React from "react";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
@@ -116,7 +116,7 @@ function App() {
 		closeAllPopups();
 	};
 
-	const handleAddCard = (cardData) => {
+	const handleAddPlacePopup = (cardData) => {
 		api
 			.createCard(cardData)
 			.then((data) => {
@@ -149,17 +149,17 @@ function App() {
 					onCardLike={handleCardLike}
 					cards={cards}
 				/>
-				<AddCard 
-					isOpen={isAddPlacePopupOpen} 
-					onClose={closeAllPopups} 
-					onAddCard={handleAddCard}
+				<AddPlacePopup
+					isOpen={isAddPlacePopupOpen}
+					onClose={closeAllPopups}
+					onAddPlacePopup={handleAddPlacePopup}
 				/>
-				<EditProfile
+				<EditProfilePopup
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}
 					onUpdateUser={handleUpdateUser}
 				/>
-				<EditAvatar
+				<EditAvatarPopup
 					isOpen={isEditAvatarPopupOpen}
 					onClose={closeAllPopups}
 					onUpdateAvatar={handleUpdateAvatar}

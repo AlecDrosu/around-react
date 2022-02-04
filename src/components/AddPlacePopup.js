@@ -1,13 +1,13 @@
 import PopupWithForm from "./PopupWithForm.js";
 import React from "react";
 
-export default function AddCard(props) {
+export default function AddPlacePopup(props) {
 	const [name, setName] = React.useState("");
 	const [link, setLink] = React.useState("");
 
-	function handleAddCard(evt) {
+	function handleAddPlacePopup(evt) {
 		evt.preventDefault();
-		props.onAddCard({ name, link });
+		props.onAddPlacePopup.js({ name, link });
 	}
 
 	function handleChageName(evt) {
@@ -25,7 +25,7 @@ export default function AddCard(props) {
 			submit='Create'
 			isOpen={props.isOpen}
 			onClose={props.onClose}
-			onSubmit={handleAddCard}
+			onSubmit={handleAddPlacePopup.js}
 		>
 			<label className='form__label'>
 				<input
