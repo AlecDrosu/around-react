@@ -7,7 +7,7 @@ export default function AddPlacePopup(props) {
 
 	function handleAddPlacePopup(evt) {
 		evt.preventDefault();
-		props.onAddPlacePopup.js({ name, link });
+		props.onAddPlacePopup({ name, link });
 	}
 
 	function handleChageName(evt) {
@@ -25,7 +25,7 @@ export default function AddPlacePopup(props) {
 			submit='Create'
 			isOpen={props.isOpen}
 			onClose={props.onClose}
-			onSubmit={handleAddPlacePopup.js}
+			onSubmit={handleAddPlacePopup}
 		>
 			<label className='form__label'>
 				<input
