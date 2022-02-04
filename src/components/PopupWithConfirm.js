@@ -1,7 +1,6 @@
 import PopupWithForm from "./PopupWithForm.js";
 
 export default function PopupWithConfirm(props) {
-
 	function handleSubmit(evt) {
 		evt.preventDefault();
 		props.onConfirm();
@@ -13,7 +12,7 @@ export default function PopupWithConfirm(props) {
 			title='Are you sure?'
 			submit='Delete'
 			isOpen={props.isOpen}
-            onClose={props.onClose}
+			onClose={props.onClose}
 			onSubmit={handleSubmit}
 		></PopupWithForm>
 	);

@@ -5,12 +5,12 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function EditProfile(props) {
 	const currentUser = React.useContext(CurrentUserContext);
 
-	const [name, setName] = React.useState(props.name);
-	const [about, setAbout] = React.useState(props.about);
+	const [name, setName] = React.useState('');
+	const [about, setAbout] = React.useState('');
 
 	React.useEffect(() => {
-		setName(currentUser.name);
-		setAbout(currentUser.about);
+		setName(currentUser.name || '');
+		setAbout(currentUser.about || '');
 	}, [currentUser]);
 
 	function handleSubmit(evt) {

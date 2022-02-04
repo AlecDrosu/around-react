@@ -92,9 +92,21 @@ function App() {
 		setIsPopupWithConfirmOpen(true);
 	};
 
-	const handleUpdateUserInfo = (userInfo) => {
+	const handleUpdateUser = (userInfo) => {
 		api
 			.editProfile(userInfo)
+			.then((data) => {
+				setCurrentUser(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		closeAllPopups();
+	};
+
+	const handleUpdateAvatar = (avatar) => {
+		api
+			.editAvatar(avatar)
 			.then((data) => {
 				setCurrentUser(data);
 			})
@@ -130,9 +142,13 @@ function App() {
 				<EditProfile
 					isOpen={isEditProfilePopupOpen}
 					onClose={closeAllPopups}
-					onUpdateUser={handleUpdateUserInfo}
+					onUpdateUser={handleUpdateUser}
 				/>
-				<EditAvatar isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+				<EditAvatar
+					isOpen={isEditAvatarPopupOpen}
+					onClose={closeAllPopups}
+					onUpdateAvatar={handleUpdateAvatar}
+				/>
 				<PopupWithConfirm
 					isOpen={isPopupWithConfirmOpen}
 					onClose={closeAllPopups}

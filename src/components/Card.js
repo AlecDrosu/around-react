@@ -40,7 +40,11 @@ export default function Card(props) {
 			<div className='text'>
 				<h2 className='text__label'>{props.name}</h2>
 				<div className='text__like'>
-					<button type='button' className={cardLikeButtonClassName} onClick={handleLikeClick}></button>
+					<button
+						type='button'
+						className={cardLikeButtonClassName}
+						onClick={handleLikeClick}
+					></button>
 					<span className='text__like-count'>{props.likes.length}</span>
 				</div>
 			</div>
